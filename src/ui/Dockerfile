@@ -1,7 +1,5 @@
-FROM alpine:latest
-RUN apk update \
-    && apk add ruby-full ruby-dev alpine-sdk \
-    && gem install bundler --no-ri --no-rdoc
+FROM ruby:2.2
+RUN apt-get update -qq && apt-get install -y build-essential
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
