@@ -1,7 +1,6 @@
 # snvtr_microservices
-snvtr microservices repository
+snvtr microservices repository #3
 
-- docker-machine installation
-- remote docker-host on Google cloud
-- made a docker image with monolith reddit app
+- reddit monolith split into four dockered microservices
+- different distros to build a docker image to reduce size
 
