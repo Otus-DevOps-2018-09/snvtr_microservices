@@ -1,4 +1,4 @@
-#
+# comment to commit
 image: 'ruby:2.4.2'
 
 stages:
