@@ -5,7 +5,7 @@ services:
     volumes:
       - post_db:/data/db
     networks:
-      - back_net
+      - front_net
   ui:
     build: ./ui
     image: ${USERNAME}/ui:${VERSION}
@@ -17,12 +17,12 @@ services:
     build: ./post-py
     image: ${USERNAME}/post:${VERSION}
     networks:
-      - back_net
+      - front_net
   comment:
     build: ./comment
     image: ${USERNAME}/comment:${VERSION}
     networks:
-      - back_net
+      - front_net
 
 volumes:
   post_db:
