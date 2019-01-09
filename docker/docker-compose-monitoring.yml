@@ -12,7 +12,6 @@ services:
 #      - '--storage.tsdb.path=/prometheus'
 #      - '--storage.tsdb.retension=1d'
     networks:
-      - back_net
       - front_net
 
   node-export:
@@ -26,10 +25,10 @@ services:
 #      - '--path.procfs=/host/proc'
 #      - '--path.sysfs=/host/sys'
 #      - '--collector.filesysten.ignored-mount-points="^(sys|proc|dev|host|etc)($$|/)"'
+    ports:
+      - '9100:9100'
     networks:
-      - back_net
       - front_net
-
 
   cadvisor:
     image: google/cadvisor:v0.29.0
@@ -41,13 +40,33 @@ services:
     ports:
       - '8080:8080'
     networks:
-      - back_net
       - front_net    
+
+  grafana:
+    image: grafana/grafana:5.0.0
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    networks:
+      - front_net
+
+  alertmanager:
+    image: ${USERNAME}/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+      - '9093:9093'
 
 volumes:
   prometheus_data:
+  grafana_data:
 
 networks:
-  back_net:
   front_net:
 
