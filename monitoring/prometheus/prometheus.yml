@@ -18,15 +18,19 @@ scrape_configs:
       - targets:
         - 'comment:9292'
 
+<<<<<<< HEAD
   - job_name: 'post'
     static_configs:
       - targets:
         - 'post:5000'
 
+=======
+>>>>>>> master
   - job_name: 'node'
     static_configs:
       - targets:
         - 'node-exporter:9100'
+<<<<<<< HEAD
 
   - job_name: 'cadvisor'
     static_configs:
@@ -42,3 +46,5 @@ alerting:
     static_configs:
     - targets:
       - 'alertmanager:9093'
+=======
+>>>>>>> master
