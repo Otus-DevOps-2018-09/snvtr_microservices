@@ -5,7 +5,11 @@ services:
     volumes:
       - post_db:/data/db
     networks:
+<<<<<<< HEAD
+      - front_net
+=======
       - back_net
+>>>>>>> master
   ui:
 #    build: ./ui
     image: ${USERNAME}/ui
@@ -17,11 +21,21 @@ services:
 #    build: ./post-py
     image: ${USERNAME}/post
     networks:
+<<<<<<< HEAD
+      - front_net
+=======
       - back_net
+>>>>>>> master
   comment:
 #    build: ./comment
     image: ${USERNAME}/comment
     networks:
+<<<<<<< HEAD
+      - front_net
+
+volumes:
+  post_db:
+=======
       - back_net
 
   prometheus:
@@ -55,6 +69,7 @@ services:
 volumes:
   post_db:
   prometheus_data:
+>>>>>>> master
 
 networks:
   back_net:
