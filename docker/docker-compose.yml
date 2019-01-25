@@ -7,8 +7,15 @@ services:
     volumes:
       - post_db:/data/db
     networks:
+<<<<<<< HEAD
       - front_net
+<<<<<<< HEAD
 
+=======
+=======
+      - back_net
+>>>>>>> master
+>>>>>>> master
   ui:
     environment:
       - POST_SERVICE_HOST=post
@@ -32,22 +39,65 @@ services:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     image: ${USERNAME}/post:latest
     networks:
+<<<<<<< HEAD
       - front_net
+<<<<<<< HEAD
     logging:
       driver: "fluentd"
       options:
         fluentd-address: localhost:24224
         tag: service.post
         
+=======
+=======
+      - back_net
+>>>>>>> master
+>>>>>>> master
   comment:
     environment:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     image: ${USERNAME}/comment
     networks:
+<<<<<<< HEAD
       - front_net
 
 volumes:
   post_db:
+=======
+      - back_net
+
+  prometheus:
+    image: ${USERNAME}/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+#      - '--storage.tsdb.path=/prometheus'
+#      - '--storage.tsdb.retension=1d'
+    networks:
+      - back_net
+      - front_net
+
+  node-export:
+    image: prom/node-exporter:v0.15.2
+    user: root
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesysten.ignored-mount-points="^(sys|proc|dev|host|etc)($$|/)"'
+    networks:
+      - back_net
+
+volumes:
+  post_db:
+  prometheus_data:
+>>>>>>> master
 
 networks:
   front_net:
