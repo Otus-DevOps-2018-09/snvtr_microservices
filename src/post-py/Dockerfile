@@ -1,4 +1,5 @@
 FROM python:3.6.0-alpine
+RUN apk add --no-cache build-base
 
 WORKDIR /app
 ADD . /app
