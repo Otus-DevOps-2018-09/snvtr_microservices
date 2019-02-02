@@ -7,10 +7,13 @@ metadata:
     app: reddit
     component: ui
 spec:
-  type: NodePort
+  type: NodePort 
+  #  type: LoadBalancer
   ports:
-  - nodePort: 30092
-    port: 9292
+  #- port: 80
+  - port: 9292
+    nodePort: 32092
+    #  port: 9292
     protocol: TCP
     targetPort: 9292
   selector:
